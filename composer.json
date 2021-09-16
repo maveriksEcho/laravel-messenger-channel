@@ -1,0 +1,25 @@
+{
+  "name": "maveriksEcho/laravel-messenger-channel",
+  "description": "description",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "maveriks",
+      "email": "maveriks.exho@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.4",
+    "laravel/framework": "^6.0|^7.0|^8.0",
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "NotificationChannels\\Messenger\\": "src/"
+    }
+  }
+}
