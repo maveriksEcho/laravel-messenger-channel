@@ -35,7 +35,7 @@ class MessengerServiceProvider extends ServiceProvider implements DeferrableProv
 
         Notification::resolved(function (ChannelManager $service) {
             $service->extend('messenger', function (Application $app) {
-                return $app->make('messenger', ['options' => $app['app']['messenger-notification-channel']]);
+                return $app->make('messenger', ['options' => $app['config']['messenger-notification-channel']]);
             });
         });
     }
