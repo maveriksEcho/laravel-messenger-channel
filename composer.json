@@ -1,6 +1,6 @@
 {
   "name": "maveriks-echo/laravel-messenger-channel",
-  "description": "description",
+  "description": "Notification messenger channel to Laravel",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -20,6 +20,13 @@
   "autoload": {
     "psr-4": {
       "NotificationChannels\\Messenger\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "NotificationChannels\\Messenger\\MessengerServiceProvider"
+      ]
     }
   }
 }

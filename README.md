@@ -1,7 +1,7 @@
 Notification messenger channel
 =============================
 
-![Latest Stable Version](https://poser.pugx.org/mmaveriks-echo/laravel-messenger-channel/v/stable)
+![Latest Stable Version](https://poser.pugx.org/maveriks-echo/laravel-messenger-channel/v/stable)
 ![Total Downloads](https://poser.pugx.org/maveriks-echo/laravel-messenger-channel/downloads)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
