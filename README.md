@@ -1,8 +1,8 @@
 Notification messenger channel
 =============================
 
-[![Latest Stable Version](https://poser.pugx.org/maveriksEcho/laravel-messenger-channel/v/stable)](https://packagist.org/packages/pervozdanniy/translation-client)
-![Total Downloads](https://poser.pugx.org/maveriksEcho/laravel-messenger-channel/downloads)
+![Latest Stable Version](https://poser.pugx.org/mmaveriks-echo/laravel-messenger-channel/v/stable)
+![Total Downloads](https://poser.pugx.org/maveriks-echo/laravel-messenger-channel/downloads)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Notification messenger channel to Laravel FrameWork v6.0 and above.
@@ -12,7 +12,7 @@ The recommended way to install channel is through
 [Composer](http://getcomposer.org).
 
 ```bash
-composer require maveriksEcho/laravel-messenger-channel
+composer require maveriks-echo/laravel-messenger-channel
 ```
 
 
