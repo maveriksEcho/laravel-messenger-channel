@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Messenger;
 
-use App\Notifications\Channels\MessengerChannel;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Notifications\ChannelManager;
