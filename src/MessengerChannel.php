@@ -76,7 +76,7 @@ class MessengerChannel
                 RequestOptions::JSON => [
                     'body' => $notification->toMessenger($notifiable),
                     'phone' => $to,
-                    'project_id' => $this->options['project_id'],
+                    'project_id' => (int)$this->options['project_id'],
                     'messenger' => $this->options['messenger'],
                     'sendAll' => $this->options['sendAll'],
                     'callback_url' => $this->options['callback_url'],
