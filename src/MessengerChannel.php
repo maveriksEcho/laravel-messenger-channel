@@ -72,13 +72,15 @@ class MessengerChannel
         }
 
         try {
-            $this->client->post('/', [
-                'body' => $notification->toMessenger($notifiable),
-                'phone' => $to,
-                'project_id' => $this->options['project_id'],
-                'messenger' => $this->options['messenger'],
-                'sendAll' => $this->options['sendAll'],
-                'callback_url' => $this->options['callback_url'],
+            $this->client->post('/receiveMessage', [
+                RequestOptions::JSON => [
+                    'body' => $notification->toMessenger($notifiable),
+                    'phone' => $to,
+                    'project_id' => $this->options['project_id'],
+                    'messenger' => $this->options['messenger'],
+                    'sendAll' => $this->options['sendAll'],
+                    'callback_url' => $this->options['callback_url'],
+                ]
             ]);
         } catch (\Exception $e) {
             logger('Messenger notification error', [
