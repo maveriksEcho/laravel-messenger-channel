@@ -5,10 +5,11 @@ namespace NotificationChannels\Messenger;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Messenger\Exceptions\NotificationMessengerException;
 
-class MessengerChannel
+class SmartSenderChannel
 {
     /**
      * @var HttpClient
@@ -30,7 +31,6 @@ class MessengerChannel
         $this->client = new HttpClient([
             'base_uri' => $this->options['host'],
             RequestOptions::HEADERS => [
-                'Authentication' => $this->options['authentication'],
                 'Content-Type' => 'application/json',
                 RequestOptions::CONNECT_TIMEOUT => 10,
             ],
@@ -45,14 +45,6 @@ class MessengerChannel
         if (empty($options['host'])) {
             throw new \InvalidArgumentException('Host is required');
         }
-
-        if (empty($options['authentication'])) {
-            throw new \InvalidArgumentException('Authentication is required');
-        }
-
-        if (empty($options['project_id'])) {
-            throw new \InvalidArgumentException('Project id is required');
-        }
         $this->options = $options;
     }
 
@@ -65,30 +57,18 @@ class MessengerChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        $to = $this->options['user_phone'] ?? $notifiable->routeNotificationFor('messengers');
-
-        if (!$to) {
-            throw new NotificationMessengerException('Route notification is required');
-        }
+        $params = $notification->toMessenger($notifiable);
 
         try {
-            $this->client->post('/receiveMessage', [
-                RequestOptions::JSON => [
-                    'body' => $notification->toMessenger($notifiable),
-                    'phone' => $to,
-                    'project_id' => (int)$this->options['project_id'],
-                    'messenger' => $this->options['messenger'],
-                    'sendAll' => $this->options['sendAll'],
-                    'callback_url' => $this->options['callback_url'],
-                ]
+            $this->client->post('/smartsender/add', [
+                RequestOptions::JSON => ($params instanceof Arrayable ? $params->toArray() : (array)$params)
             ]);
         } catch (\Exception $e) {
-            logger('Messenger notification error', [
+            logger('Smartsender notification error', [
                 'error' => $e->getMessage(),
-                'phone' => $to
             ]);
             report($e);
-            throw new NotificationMessengerException('Notification sending error');
+            throw new NotificationMessengerException('Smartsender sending error');
         }
     }
 }

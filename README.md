@@ -36,3 +36,40 @@ composer require maveriks-echo/laravel-messenger-channel
 | sendAll        | Send to all messenger in list                   | false                                   |
 | callback_url   | Callback url to response from messenger         | null                                    |
 | user_phone     | User phone                                      | null                                    |
+
+
+```php
+   public function via($notifiable): array
+    {
+        return ['smart-sender'];
+    }
+
+    public function toMessenger($notifiable): SmartSender
+    {
+        return new HerokuApp(
+            'Url',
+            'Method', // post
+            'ArrayOfParams',          
+        );
+    }
+```
+
+#### Available Options
+
+| Option         | Description                                     | Default value                           | 
+|----------------|-------------------------------------------------|-----------------------------------------|
+| host           | API host (required)                             | null                                    |
+
+#### Params heroku
+
+| Option            | Description                                     | Default value                           | 
+|-------------------|-------------------------------------------------|-----------------------------------------|
+| requestID         | Your request ID (required)                      | null                                    |
+| requestDate       | Date by format Y-m-d H:i:s (required)           | null                                    |
+| requestType       | Request type (required)                         | null                                    |
+| requestNotes      | Comment (required)                              | null                                    |
+| requestUser       | User name (required)                            | null                                    |
+| requestAuthor     | Author name  (required)                         | null                                    |
+| requestAmount     | Amount   (required)                             | null                                    |
+| requestApproveUrl | Callback approve url  (required)                | null                                    |
+| requestCancelUrl  | Callback cancel url  (required)                 | null                                    |

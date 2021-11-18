@@ -17,6 +17,7 @@ class MessengerServiceProvider extends ServiceProvider implements DeferrableProv
      */
     public array $singletons = [
         'messenger' => MessengerChannel::class,
+        'smart-sender' => SmartSenderChannel::class,
     ];
 
     /**
@@ -27,15 +28,18 @@ class MessengerServiceProvider extends ServiceProvider implements DeferrableProv
     public function register()
     {
 
-        $this->mergeConfigFrom(__DIR__.'/../config/messenger-notification-channel.php', 'messenger-notification-channel');
+        $this->mergeConfigFrom(__DIR__.'/../config/notification-channels.php', 'notification-channels');
 
         $this->publishes([
-            __DIR__.'/../config/messenger-notification-channel.php' => config_path('messenger-notification-channel.php'),
+            __DIR__.'/../config/notification-channels.php' => config_path('notification-channels.php'),
         ]);
 
         Notification::resolved(function (ChannelManager $service) {
             $service->extend('messenger', function (Application $app) {
-                return $app->make('messenger', ['options' => $app['config']['messenger-notification-channel']]);
+                return $app->make('messenger', ['options' => $app['config']['notification-channels']['messenger']]);
+            });
+            $service->extend('smart-sender', function (Application $app) {
+                return $app->make('smart-sender', ['options' => $app['config']['notification-channels']['smart-sender']]);
             });
         });
     }
