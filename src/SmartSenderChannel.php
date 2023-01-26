@@ -31,8 +31,10 @@ class SmartSenderChannel
         $this->client = new HttpClient([
             'base_uri' => $this->options['host'],
             RequestOptions::HEADERS => [
+                'API-KEY' => $this->options['authentication'],
                 'Content-Type' => 'application/json',
-                RequestOptions::CONNECT_TIMEOUT => 10,
+                RequestOptions::CONNECT_TIMEOUT => 80,
+                RequestOptions::TIMEOUT => 30,
             ],
         ]);
     }
@@ -45,6 +47,11 @@ class SmartSenderChannel
         if (empty($options['host'])) {
             throw new \InvalidArgumentException('Host is required');
         }
+
+        if (empty($options['authentication'])) {
+            throw new \InvalidArgumentException('Authentication is required');
+        }
+
         $this->options = $options;
     }
 

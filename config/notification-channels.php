@@ -11,5 +11,6 @@ return [
     ],
     'smart-sender' => [
         'host' => env('SMART_SENDER_HOST'),
+        'authentication' => env('SMART_SENDER_AUTHORIZATION'),
     ],
 ];

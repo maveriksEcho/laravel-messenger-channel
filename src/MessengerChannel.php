@@ -32,7 +32,8 @@ class MessengerChannel
             RequestOptions::HEADERS => [
                 'Authentication' => $this->options['authentication'],
                 'Content-Type' => 'application/json',
-                RequestOptions::CONNECT_TIMEOUT => 10,
+                RequestOptions::CONNECT_TIMEOUT => 80,
+                RequestOptions::TIMEOUT => 30,
             ],
         ]);
     }
