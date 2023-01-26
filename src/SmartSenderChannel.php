@@ -67,7 +67,7 @@ class SmartSenderChannel
         $params = $notification->toMessenger($notifiable);
 
         try {
-            $this->client->post('/smartsender/add', [
+            $this->client->post('smartsender/add', [
                 RequestOptions::JSON => ($params instanceof Arrayable ? $params->toArray() : (array)$params)
             ]);
         } catch (\Exception $e) {
