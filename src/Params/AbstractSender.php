@@ -16,7 +16,7 @@ abstract class AbstractSender implements Arrayable
      * @param string $method
      * @param array $params
      */
-    public function __construct(string $url, string $method, array $params)
+    public function __construct(string $url, array $params, string $method = 'post')
     {
         $this->setUrl($url)
             ->setMethod($method)
