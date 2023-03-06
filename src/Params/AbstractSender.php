@@ -29,10 +29,6 @@ abstract class AbstractSender implements Arrayable
      */
     public function setUrl($url): self
     {
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            throw new \InvalidArgumentException(sprintf('Invalid url [%s]', $url));
-        }
-
         $this->url = $url;
         return $this;
     }
